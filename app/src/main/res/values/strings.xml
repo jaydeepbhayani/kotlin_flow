@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">league_challenge</string>
+    <string name="network_available">Network Available</string>
+    <string name="network_unavailable">Network Unavailable</string>
+    <string name="network_losing">Network Losing</string>
+    <string name="network_lost">Network Lost</string>
+    <string name="avatar">avatar</string>
+    <string name="no_posts_found">No posts found.</string>
+    <string name="posts">Posts</string>
+</resources>

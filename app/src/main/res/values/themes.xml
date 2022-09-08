@@ -1,0 +1,116 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="SplashScreen" parent="Theme.SplashScreen">
+        <item name="android:windowLightStatusBar" tools:targetApi="23">true</item>
+        <item name="android:navigationBarColor">#000000</item>
+
+        <item name="windowSplashScreenBackground">@color/colorBackground</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_league_logo</item>
+        <item name="postSplashScreenTheme">@style/BaseTheme</item>
+        <item name="windowSplashScreenAnimationDuration">5000</item>
+
+    </style>
+
+    <style name="BaseTheme" parent="Theme.Material3.Light.NoActionBar">
+        <item name="android:windowLightStatusBar" tools:targetApi="23">true</item>
+        <item name="android:windowBackground">?attr/appBackgroundColor</item>
+        <item name="android:statusBarColor">?attr/appBackgroundColor</item>
+
+        <item name="android:colorControlActivated">?attr/appPrimaryColor</item>
+        <item name="android:colorControlHighlight">?attr/appSurfaceColor</item>
+        <item name="android:textColorHighlight">?attr/appSurfaceColor</item>
+        <item name="android:colorControlNormal">?attr/appPrimaryColor</item>
+        <item name="android:textColorHint">?attr/appSecondaryColor</item>
+        <item name="hintTextColor">?attr/appSecondaryColor</item>
+
+        <item name="android:fontFamily">@font/nunito_semibold</item>
+        <item name="fontFamily">@font/nunito_semibold</item>
+
+        <item name="appPrimaryColor">@color/colorPrimary</item>
+        <item name="appSecondaryColor">@color/colorSecondary</item>
+        <item name="appBackgroundColor">@color/colorBackground</item>
+        <item name="appSurfaceColor">@color/colorSurface</item>
+
+        <item name="appBarLayoutStyle">@style/Widget.MaterialComponents.AppBarLayout.Primary</item>
+        <item name="snackbarStyle">@style/Snackbar</item>
+        <item name="snackbarTextViewStyle">@style/SnackbarTextView</item>
+
+        <item name="android:colorPrimary">?attr/appPrimaryColor</item>
+        <item name="android:navigationBarColor">?attr/appBackgroundColor</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">true</item>
+    </style>
+
+    <style name="Snackbar" parent="Widget.Material3.Snackbar">
+        <item name="android:layout_margin">@dimen/spacing_normal</item>
+    </style>
+
+    <style name="SnackbarTextView" parent="Widget.Material3.Snackbar.TextView">
+        <item name="fontFamily">@font/nunito_bold</item>
+    </style>
+
+    <style name="AppBarLayout" parent="Widget.MaterialComponents.AppBarLayout.Primary">
+        <item name="android:background">?attr/appBackgroundColor</item>
+        <item name="liftOnScroll">true</item>
+        <item name="android:elevation">@dimen/elevation_normal</item>
+        <item name="android:animateLayoutChanges">true</item>
+    </style>
+
+    <style name="Toolbar" parent="Widget.Material3.Toolbar">
+        <item name="contentInsetStartWithNavigation">0dp</item>
+        <item name="titleMarginEnd">@dimen/spacing_normal</item>
+        <item name="titleTextAppearance">@style/ToolbarTitleTextAppearance</item>
+        <item name="layout_collapseMode">pin</item>
+        <item name="titleTextColor">?attr/appPrimaryColor</item>
+    </style>
+
+    <style name="ToolbarTitleTextAppearance" parent="TextAppearance.MaterialComponents.Headline1">
+        <item name="android:maxLines">1</item>
+        <item name="android:textSize">@dimen/size_large</item>
+        <item name="fontFamily">@font/nunito_bold</item>
+        <item name="android:textColor">?attr/appPrimaryColor</item>
+    </style>
+
+    <style name="PostAvatarTextView" parent="Widget.MaterialComponents.TextView">
+        <item name="fontFamily">@font/nunito_semibold</item>
+        <item name="android:textSize">@dimen/size_normal</item>
+        <item name="android:textColor">?attr/appPrimaryColor</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="PostTitleTextView" parent="Widget.MaterialComponents.TextView">
+        <item name="fontFamily">@font/nunito_semibold</item>
+        <item name="android:textSize">@dimen/size_small</item>
+        <item name="android:textColor">?attr/appPrimaryColor</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="PostBodyTextView" parent="Widget.MaterialComponents.TextView">
+        <item name="fontFamily">@font/nunito_regular</item>
+        <item name="android:textSize">@dimen/size_extra_small</item>
+        <item name="android:lineSpacingMultiplier">1</item>
+        <item name="android:maxLines">5</item>
+        <item name="android:textColor">?attr/appPrimaryColor</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="PlaceholderTextView" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textSize">@dimen/size_extra_huge</item>
+        <item name="android:textColor">?attr/appSecondaryColor</item>
+        <item name="fontFamily">@font/nunito_bold</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="ProgressIndicator" parent="Widget.Material3.CircularProgressIndicator">
+        <item name="android:indeterminate">true</item>
+        <item name="android:contentDescription">@string/loading</item>
+        <item name="indicatorColor">?attr/appPrimaryColor</item>
+        <item name="indicatorSize">50dp</item>
+        <item name="trackColor">?attr/appBackgroundColor</item>
+        <item name="trackCornerRadius">@dimen/spacing_extra_large</item>
+        <item name="trackThickness">5dp</item>
+    </style>
+
+    <string name="loading">Loading…</string>
+</resources>

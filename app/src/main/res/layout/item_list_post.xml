@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="@dimen/spacing_normal">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cv_avatar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_normal"
+        app:cardCornerRadius="@dimen/dp250"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:strokeWidth="@dimen/dp0">
+
+        <ImageView
+            android:id="@+id/iv_avatar"
+            android:layout_width="@dimen/dp50"
+            android:layout_height="@dimen/dp50"
+            android:backgroundTint="?attr/appBackgroundColor"
+            android:contentDescription="@string/avatar"
+            android:src="@drawable/ic_baseline_image_24"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_value_username"
+        style="@style/PostAvatarTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/spacing_small"
+        app:layout_constraintBottom_toBottomOf="@id/cv_avatar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/cv_avatar"
+        app:layout_constraintTop_toTopOf="@id/cv_avatar"
+        tools:text="Leanne Graham" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_value_title"
+        style="@style/PostTitleTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/cv_avatar"
+        app:layout_constraintTop_toBottomOf="@id/cv_avatar"
+        tools:text="est et quae odit qui non" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_value_desc"
+        style="@style/PostBodyTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_extra_small"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/cv_avatar"
+        app:layout_constraintTop_toBottomOf="@id/tv_value_title"
+        tools:text="similique esse doloribus nihil..." />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginVertical="@dimen/spacing_normal"
+        android:background="@drawable/divider"
+        android:backgroundTint="@color/colorDivider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/cv_avatar"
+        app:layout_constraintTop_toBottomOf="@id/tv_value_desc" />
+</androidx.constraintlayout.widget.ConstraintLayout>

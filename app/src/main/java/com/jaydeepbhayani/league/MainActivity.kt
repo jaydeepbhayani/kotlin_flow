@@ -76,7 +76,7 @@ class MainActivity : AppCompatActivity() {
                 )
             }
             ConnectivityObserver.Status.Lost -> {
-                isFirst = true
+                isFirst = false
                 binding.root.snackbar(
                     stringId = R.string.network_lost,
                     drawableId = R.drawable.ic_round_error_24,

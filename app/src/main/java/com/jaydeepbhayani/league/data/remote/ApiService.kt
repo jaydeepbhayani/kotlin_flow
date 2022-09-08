@@ -19,13 +19,12 @@ interface ApiService {
     suspend fun getLoginDataAsync(): Response<LoginResponse>
 
     @GET("users")
-    suspend fun getUsersDataAsync(@Header("x-access-token") apiKey: String? = API_KEY): List<UsersResponse>
+    suspend fun getUsersDataAsync(@Header("x-access-token") apiKey: String): List<UsersResponse>
 
     @GET("posts")
-    suspend fun getPostsData(@Header("x-access-token") apiKey: String? = API_KEY): List<PostsResponse>
+    suspend fun getPostsData(@Header("x-access-token") apiKey: String): List<PostsResponse>
 
     companion object {
         const val BASE_URL = "https://engineering.league.dev/challenge/api/"
-        const val API_KEY = "B4070629C78734CA29C222B19E6321B7"
     }
 }

@@ -39,7 +39,7 @@ class PostsViewModel @Inject constructor(
         getLoginData()
         mutableUsers.combine(mutablePosts) { mutableUsers, mutablePosts ->
             mutablePostItem.value = mutablePosts.mapToPostItemModel(mutableUsers).let {
-                if (it.isNotEmpty()) UiState.Success(it) else UiState.Loading
+                if (it.isNotEmpty()) UiState.Success(emptyList()) else UiState.Loading
             }
         }.launchIn(viewModelScope)
     }

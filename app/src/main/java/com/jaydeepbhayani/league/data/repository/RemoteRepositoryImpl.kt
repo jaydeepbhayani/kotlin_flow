@@ -41,6 +41,8 @@ class RemoteRepositoryImpl @Inject constructor(
                 e.printStackTrace()
                 emit(Resource.Error("Couldn't load data"))
                 null
+            } catch (e: Throwable) {
+                emit(Resource.Error("Couldn't load data"))
             }
         }.flowOn(Dispatchers.IO)
     }
@@ -49,7 +51,7 @@ class RemoteRepositoryImpl @Inject constructor(
         return flow {
             emit(Resource.Loading(true))
             val result = try {
-                val result = apiService.getUsersDataAsync()
+                val result = apiService.getUsersDataAsync(apiKey)
                 emit(Resource.Success(result))
                 emit(Resource.Loading(false))
             } catch (e: IOException) {
@@ -60,6 +62,8 @@ class RemoteRepositoryImpl @Inject constructor(
                 e.printStackTrace()
                 emit(Resource.Error("Couldn't load data"))
                 null
+            } catch (e: Throwable) {
+                emit(Resource.Error(e.message))
             }
         }.flowOn(Dispatchers.IO)
     }
@@ -68,7 +72,7 @@ class RemoteRepositoryImpl @Inject constructor(
         return flow {
             emit(Resource.Loading(true))
             val result = try {
-                val result = apiService.getPostsData()
+                val result = apiService.getPostsData(apiKey)
                 emit(Resource.Success(result))
                 emit(Resource.Loading(false))
             } catch (e: IOException) {
@@ -79,6 +83,8 @@ class RemoteRepositoryImpl @Inject constructor(
                 e.printStackTrace()
                 emit(Resource.Error("Couldn't load data"))
                 null
+            } catch (e: Throwable) {
+                emit(Resource.Error(e.message))
             }
         }.flowOn(Dispatchers.IO)
     }

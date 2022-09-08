@@ -7,4 +7,5 @@
     <string name="avatar">avatar</string>
     <string name="no_posts_found">No posts found.</string>
     <string name="posts">Posts</string>
+    <string name="something_went_wrong">Ops something went wrong</string>
 </resources>

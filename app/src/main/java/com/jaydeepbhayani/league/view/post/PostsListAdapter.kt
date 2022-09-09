@@ -1,4 +1,4 @@
-package com.jaydeepbhayani.league.view
+package com.jaydeepbhayani.league.view.post
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.jaydeepbhayani.league.R
 import com.jaydeepbhayani.league.data.model.PostItemModel
 import com.jaydeepbhayani.league.util.BaseViewHolder
+import com.jaydeepbhayani.league.view.common.EmptyItemViewHolder
 
 class PostsListAdapter : RecyclerView.Adapter<BaseViewHolder>() {
 

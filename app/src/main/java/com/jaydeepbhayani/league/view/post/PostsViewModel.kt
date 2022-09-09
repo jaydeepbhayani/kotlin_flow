@@ -1,4 +1,4 @@
-package com.jaydeepbhayani.league.view
+package com.jaydeepbhayani.league.view.post
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

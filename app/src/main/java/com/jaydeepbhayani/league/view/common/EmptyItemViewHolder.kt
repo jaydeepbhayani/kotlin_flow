@@ -1,4 +1,4 @@
-package com.jaydeepbhayani.league.view
+package com.jaydeepbhayani.league.view.common
 
 import android.view.View
 import android.widget.TextView

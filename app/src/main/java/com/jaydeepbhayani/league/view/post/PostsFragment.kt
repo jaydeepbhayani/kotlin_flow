@@ -1,4 +1,4 @@
-package com.jaydeepbhayani.league.view
+package com.jaydeepbhayani.league.view.post
 
 import android.os.Bundle
 import android.view.LayoutInflater

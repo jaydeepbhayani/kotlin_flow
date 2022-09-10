@@ -1,9 +1,12 @@
 package com.jaydeepbhayani.league.di
 
+import android.content.Context
 import com.jaydeepbhayani.league.BuildConfig
+import com.jaydeepbhayani.league.util.connectivity.NetworkConnectivityObserver
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -32,4 +35,9 @@ object NetworkModule {
             })
         }.build()
     }
+
+    @Provides
+    @Singleton
+    fun provideNetworkStateObserver(@ApplicationContext context: Context) =
+        NetworkConnectivityObserver(context)
 }

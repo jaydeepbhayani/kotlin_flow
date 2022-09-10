@@ -24,6 +24,7 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <FrameLayout
+        android:id="@+id/frameLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -47,11 +48,20 @@
             tools:listitem="@layout/item_list_post"
             tools:visibility="visible" />
 
-        <include
-            android:id="@+id/loader"
-            layout="@layout/progress_indicator_item"
-            android:visibility="visible" />
+    </FrameLayout>
 
+    <FrameLayout
+        android:id="@+id/loader"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        app:layout_anchor="@+id/frameLayout"
+        app:layout_anchorGravity="center"
+        tools:visibility="visible">
+
+        <include
+            android:id="@+id/progress_indicator_item"
+            layout="@layout/progress_indicator_item" />
     </FrameLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

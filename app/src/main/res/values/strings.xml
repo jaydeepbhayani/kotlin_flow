@@ -8,4 +8,5 @@
     <string name="no_posts_found">No posts found.</string>
     <string name="posts">Posts</string>
     <string name="something_went_wrong">Ops something went wrong</string>
+    <string name="error_connection">Please check your internet.</string>
 </resources>

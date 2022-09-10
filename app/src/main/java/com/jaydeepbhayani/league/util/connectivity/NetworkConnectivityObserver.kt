@@ -66,3 +66,24 @@ class NetworkConnectivityObserver(
         }.distinctUntilChanged()
     }
 }
+
+fun isNetworkAvailable(context: Context): Boolean {
+    var result = false
+    val connectivityManager =
+        context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager?
+    connectivityManager?.run {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)?.run {
+                result = when {
+                    hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
+                    hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> true
+                    hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> true
+                    else -> false
+                }
+            }
+        } else {
+            TODO("VERSION.SDK_INT < M")
+        }
+    }
+    return result
+}

@@ -137,9 +137,9 @@ fun View.snackbar(
     @DrawableRes drawableId: Int? = null,
     @IdRes anchorViewId: Int? = null,
     color: AppColor? = null,
-    vararg formatArgs: Any? = emptyArray(),
+    duration: Int? = null,
     vibrate: Boolean = false,
-) = Snackbar.make(this, string, Snackbar.LENGTH_SHORT).apply {
+) = Snackbar.make(this, string, duration ?: Snackbar.LENGTH_SHORT).apply {
     animationMode = Snackbar.ANIMATION_MODE_SLIDE
     val textView = view.findViewById<TextView>(com.google.android.material.R.id.snackbar_text)
     if (anchorViewId != null) setAnchorView(anchorViewId)

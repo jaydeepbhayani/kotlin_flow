@@ -16,7 +16,7 @@ import kotlinx.coroutines.launch
 /**
  * * [NetworkConnectivityObserver] observes the connection status
  * @author
- * created by Jaydeep Bhayani on 09/08/2022
+ * created by Jaydeep Bhayani on 09/09/2022
  */
 
 @OptIn(ExperimentalCoroutinesApi::class)

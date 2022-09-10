@@ -3,7 +3,6 @@ package com.jaydeepbhayani.league.view.post
 import com.google.common.truth.Truth.assertThat
 import com.jaydeepbhayani.league.MainDispatcherRule
 import com.jaydeepbhayani.league.data.model.LoginResponse
-import com.jaydeepbhayani.league.data.model.PostItemModel
 import com.jaydeepbhayani.league.data.model.PostsResponse
 import com.jaydeepbhayani.league.data.model.UsersResponse
 import com.jaydeepbhayani.league.repository.RemoteRepositoryFake
@@ -69,47 +68,4 @@ class PostsViewModelTest {
         coroutineRule.dispatcher.scheduler.advanceUntilIdle()
         assertThat(postsViewModel.posts.value).isEqualTo(postResponse)
     }
-
-    @Test
-    fun `postItem, properly counts down from 5 to 0`() = runBlocking {
-        var loginResponse = LoginResponse(
-            api_key = "steadfast"
-        )
-        repositoryFake.loginResponse = loginResponse
-        val userResponse = (1..5).map {
-            UsersResponse(
-                id = 0,
-                avatar = "avatar",
-                name = "name",
-                username = "user",
-            )
-        }
-        val postResponse = (1..5).map {
-            PostsResponse(
-                userId = 0,
-                id = 0,
-                title = "title",
-                body = "body",
-            )
-        }
-        val postItemList = (1..5).map {
-            PostItemModel(
-                title = "title",
-                body = "body",
-                image = "avatar",
-                name = "name",
-            )
-        }
-        repositoryFake.userResponse = userResponse
-        repositoryFake.postResponse = postResponse
-        repositoryFake.postItemList = postItemList
-
-        //postsViewModel.posts.value.mapToPostItemModel(postsViewModel.users.value)
-
-        coroutineRule.dispatcher.scheduler.advanceUntilIdle()
-
-        assertThat(postsViewModel.postItem).isEqualTo(postItemList)
-
-    }
-
 }

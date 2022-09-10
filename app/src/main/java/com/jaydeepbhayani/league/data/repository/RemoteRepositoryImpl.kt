@@ -18,7 +18,7 @@ import javax.inject.Inject
  * * [RemoteRepositoryImpl]
  * implementation for RemoteRepositoryImpl
  * @author
- * created by Jaydeep Bhayani on 09/08/2022
+ * created by Jaydeep Bhayani on 09/09/2022
  */
 
 class RemoteRepositoryImpl @Inject constructor(
@@ -40,7 +40,7 @@ class RemoteRepositoryImpl @Inject constructor(
                 e.printStackTrace()
                 emit(Resource.Error("Couldn't load data"))
             } catch (e: Throwable) {
-                emit(Resource.Error("Couldn't load data"))
+                emit(Resource.Error(e.message))
             }
         }.flowOn(dispatcher.io)
     }

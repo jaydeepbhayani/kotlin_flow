@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.Flow
  * Handle remote data
  * Add the data here and handle in the implementation
  * @author
- * created by Jaydeep Bhayani on 09/08/2022
+ * created by Jaydeep Bhayani on 09/09/2022
  */
 
 interface RemoteRepository {

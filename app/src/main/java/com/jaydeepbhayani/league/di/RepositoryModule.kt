@@ -12,7 +12,7 @@ import javax.inject.Singleton
  * * [RepositoryModule]
  * implementation for Bind Repository Injection
  * @author
- * created by Jaydeep Bhayani on 09/08/2022
+ * created by Jaydeep Bhayani on 09/09/2022
  */
 
 @Module
@@ -24,10 +24,4 @@ abstract class RepositoryModule {
     abstract fun bindRemoteRepository(
         remoteRepositoryImpl: RemoteRepositoryImpl
     ): RemoteRepository
-
-    /*@Binds
-    @Singleton
-    abstract fun bindDispatcher(
-        remoteRepositoryImpl: RemoteRepositoryImpl
-    ): DispatcherProvider*/
 }

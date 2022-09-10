@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.Flow
  * * [ConnectivityObserver]
  * Connectivity Interface Observer
  * @author
- * created by Jaydeep Bhayani on 09/08/2022
+ * created by Jaydeep Bhayani on 09/09/2022
  */
 interface ConnectivityObserver {
 

@@ -16,7 +16,7 @@ import javax.inject.Singleton
  * * [NetworkModule]
  * implementation for Network Injection
  * @author
- * created by Jaydeep Bhayani on 09/08/2022
+ * created by Jaydeep Bhayani on 09/09/2022
  */
 
 @Module

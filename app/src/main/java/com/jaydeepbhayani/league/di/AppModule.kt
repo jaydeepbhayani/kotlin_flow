@@ -16,7 +16,7 @@ import javax.inject.Singleton
  * * [AppModule]
  * implementation for AppModule Injection
  * @author
- * created by Jaydeep Bhayani on 09/08/2022
+ * created by Jaydeep Bhayani on 09/09/2022
  */
 
 @Module
@@ -39,10 +39,4 @@ object AppModule {
     fun provideDispatcher(): DispatcherProvider {
         return DefaultDispatchers()
     }
-
-    /*@Provides
-    @Singleton
-    fun provideRemoteRepository(apiService: ApiService): RemoteRepository {
-        return RemoteRepositoryImpl(apiService)
-    }*/
 }

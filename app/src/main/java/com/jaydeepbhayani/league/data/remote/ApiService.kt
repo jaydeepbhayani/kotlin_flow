@@ -11,7 +11,7 @@ import retrofit2.http.Header
  * * [ApiService]
  * Api service interface to handle all the data from retrofit
  * @author
- * created by Jaydeep Bhayani on 09/08/2022
+ * created by Jaydeep Bhayani on 09/09/2022
  */
 interface ApiService {
 

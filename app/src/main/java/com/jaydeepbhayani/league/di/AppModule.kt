@@ -1,6 +1,8 @@
 package com.jaydeepbhayani.league.di
 
 import com.jaydeepbhayani.league.data.remote.ApiService
+import com.jaydeepbhayani.league.util.DefaultDispatchers
+import com.jaydeepbhayani.league.util.DispatcherProvider
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -30,6 +32,12 @@ object AppModule {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(ApiService::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideDispatcher(): DispatcherProvider {
+        return DefaultDispatchers()
     }
 
     /*@Provides

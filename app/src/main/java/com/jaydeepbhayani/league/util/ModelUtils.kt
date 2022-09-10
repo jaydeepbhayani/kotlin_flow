@@ -4,9 +4,9 @@ import com.jaydeepbhayani.league.data.model.PostItemModel
 import com.jaydeepbhayani.league.data.model.PostsResponse
 import com.jaydeepbhayani.league.data.model.UsersResponse
 
-fun List<PostsResponse>.mapToPostItemModel(userResponseList: List<UsersResponse?>): List<PostItemModel> {
-    if (userResponseList.isNotEmpty() && this.isNotEmpty()) {
-        return map { post ->
+public fun List<PostsResponse>.mapToPostItemModel(userResponseList: List<UsersResponse?>): List<PostItemModel> {
+    return if (userResponseList.isNotEmpty() && this.isNotEmpty()) {
+        map { post ->
             val user = userResponseList.find { it?.id == post.userId }
             PostItemModel(
                 title = post.title,
@@ -15,5 +15,5 @@ fun List<PostsResponse>.mapToPostItemModel(userResponseList: List<UsersResponse?
                 name = user?.name
             )
         }
-    } else return emptyList()
+    } else emptyList()
 }

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.NavHostFragment
+import com.google.android.material.snackbar.Snackbar
 import com.jaydeepbhayani.league.databinding.ActivityMainBinding
 import com.jaydeepbhayani.league.util.AppColor
 import com.jaydeepbhayani.league.util.connectivity.ConnectivityObserver
@@ -12,6 +13,7 @@ import com.jaydeepbhayani.league.util.connectivity.NetworkConnectivityObserver
 import com.jaydeepbhayani.league.util.snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -21,9 +23,8 @@ class MainActivity : AppCompatActivity() {
 
     private val navController by lazy { navHostFragment.navController }
 
-    private val connectivityObserver: NetworkConnectivityObserver by lazy {
-        NetworkConnectivityObserver(this)
-    }
+    @Inject
+    lateinit var networkConnectivityObserver: NetworkConnectivityObserver
 
     private var isFirst = true
 
@@ -34,8 +35,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         lifecycleScope.launch {
-            connectivityObserver.observe().collect {
-                checkInternet(it)
+            networkConnectivityObserver.observe().collect {
+                binding.checkInternet(it)
             }
         }
         inflateGraphAndSetStartDestination(R.id.postsFragment)
@@ -47,11 +48,11 @@ class MainActivity : AppCompatActivity() {
         navController.setGraph(graph, args)
     }
 
-    private fun checkInternet(status: ConnectivityObserver.Status) {
+    private fun ActivityMainBinding.checkInternet(status: ConnectivityObserver.Status) {
         when (status) {
             ConnectivityObserver.Status.Available -> {
                 if (!isFirst) {
-                    binding.root.snackbar(
+                    root.snackbar(
                         stringId = R.string.network_available,
                         drawableId = R.drawable.ic_round_check_circle_24,
                         color = AppColor.Success,
@@ -59,28 +60,13 @@ class MainActivity : AppCompatActivity() {
                     )
                 }
             }
-            ConnectivityObserver.Status.Unavailable -> {
-                binding.root.snackbar(
-                    stringId = R.string.network_unavailable,
-                    drawableId = R.drawable.ic_round_error_24,
-                    color = AppColor.Error,
-                    vibrate = true
-                )
-            }
-            ConnectivityObserver.Status.Losing -> {
-                binding.root.snackbar(
-                    stringId = R.string.network_losing,
-                    drawableId = R.drawable.ic_round_error_24,
-                    color = AppColor.Yellow,
-                    vibrate = true
-                )
-            }
-            ConnectivityObserver.Status.Lost -> {
+            else -> {
                 isFirst = false
-                binding.root.snackbar(
-                    stringId = R.string.network_lost,
+                root.snackbar(
+                    string = getString(R.string.error_connection),
                     drawableId = R.drawable.ic_round_error_24,
                     color = AppColor.Error,
+                    duration = Snackbar.LENGTH_INDEFINITE,
                     vibrate = true
                 )
             }

@@ -2,7 +2,9 @@ package com.jaydeepbhayani.league.util
 
 import android.animation.ValueAnimator
 import android.view.View
+import android.view.ViewGroup
 import android.view.animation.AccelerateInterpolator
+import android.view.animation.AnimationUtils
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.transition.Visibility
@@ -74,4 +76,12 @@ fun Fragment.setupFadeTransition() {
     enterTransition = MaterialFade().applyDefaultConfig()
     reenterTransition = MaterialFade().applyDefaultConfig()
     returnTransition = MaterialFade().applyDefaultConfig()
+}
+
+fun ViewGroup.animatePost(animResource: Int) {
+    val animation = AnimationUtils.loadAnimation(
+        context,
+        animResource
+    )
+    startAnimation(animation)
 }

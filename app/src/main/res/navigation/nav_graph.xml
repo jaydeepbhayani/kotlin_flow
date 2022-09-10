@@ -8,5 +8,5 @@
         android:id="@+id/postsFragment"
         android:name="com.jaydeepbhayani.league.view.post.PostsFragment"
         android:label="PostsFragment"
-        tools:layout="@layout/fragment_posts"/>
+        tools:layout="@layout/fragment_posts" />
 </navigation>

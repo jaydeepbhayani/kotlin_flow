@@ -29,18 +29,16 @@ class RemoteRepositoryImpl @Inject constructor(
     override suspend fun getLoginData(): Flow<Resource<LoginResponse>> {
         return flow {
             emit(Resource.Loading(true))
-            val result = try {
+            try {
                 val result = apiService.getLoginDataAsync()
                 emit(Resource.Success(result.body()))
                 emit(Resource.Loading(false))
             } catch (e: IOException) {
                 e.printStackTrace()
                 emit(Resource.Error("Couldn't load data"))
-                null
             } catch (e: HttpException) {
                 e.printStackTrace()
                 emit(Resource.Error("Couldn't load data"))
-                null
             } catch (e: Throwable) {
                 emit(Resource.Error("Couldn't load data"))
             }
@@ -50,18 +48,16 @@ class RemoteRepositoryImpl @Inject constructor(
     override suspend fun getUsersData(apiKey: String): Flow<Resource<List<UsersResponse>>> {
         return flow {
             emit(Resource.Loading(true))
-            val result = try {
+            try {
                 val result = apiService.getUsersDataAsync(apiKey)
                 emit(Resource.Success(result))
                 emit(Resource.Loading(false))
             } catch (e: IOException) {
                 e.printStackTrace()
                 emit(Resource.Error("Couldn't load data"))
-                null
             } catch (e: HttpException) {
                 e.printStackTrace()
                 emit(Resource.Error("Couldn't load data"))
-                null
             } catch (e: Throwable) {
                 emit(Resource.Error(e.message))
             }
@@ -71,18 +67,16 @@ class RemoteRepositoryImpl @Inject constructor(
     override suspend fun getPostsData(apiKey: String): Flow<Resource<List<PostsResponse>>> {
         return flow {
             emit(Resource.Loading(true))
-            val result = try {
+            try {
                 val result = apiService.getPostsData(apiKey)
                 emit(Resource.Success(result))
                 emit(Resource.Loading(false))
             } catch (e: IOException) {
                 e.printStackTrace()
                 emit(Resource.Error("Couldn't load data"))
-                null
             } catch (e: HttpException) {
                 e.printStackTrace()
                 emit(Resource.Error("Couldn't load data"))
-                null
             } catch (e: Throwable) {
                 emit(Resource.Error(e.message))
             }

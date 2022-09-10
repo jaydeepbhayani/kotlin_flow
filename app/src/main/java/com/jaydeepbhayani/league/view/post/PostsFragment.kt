@@ -52,12 +52,11 @@ class PostsFragment : Fragment() {
         val posts = postItem.getOrDefault(emptyList())
         when (postItem) {
             is UiState.Loading -> {
-                rvPosts.hide()
-                loader.root.show()
+                loader.show()
             }
             is UiState.Success -> {
+                loader.hide()
                 rvPosts.show()
-                loader.root.hide()
                 postsListAdapter.setData(posts)
             }
         }
@@ -70,7 +69,6 @@ class PostsFragment : Fragment() {
         rvPosts.edgeEffectFactory = BounceEdgeEffectFactory()
         rvPosts.itemAnimator = VerticalListItemAnimator()
         rvPosts.scheduleLayoutAnimation()
-        //rvHome.setHasFixedSize(true)
     }
 
     companion object {

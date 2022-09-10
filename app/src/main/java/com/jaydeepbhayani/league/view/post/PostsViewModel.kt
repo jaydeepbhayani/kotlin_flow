@@ -32,14 +32,18 @@ class PostsViewModel @Inject constructor(
     private var mutablePosts = MutableStateFlow(emptyList<PostsResponse>())
     val posts get() = mutablePosts.asStateFlow()
 
-    private val mutablePostItem = MutableStateFlow<UiState<List<PostItemModel>>>(UiState.Loading)
+    private val mutablePostItem =
+        MutableStateFlow<UiState<List<PostItemModel>>>(UiState.Loading(true))
     val postItem get() = mutablePostItem.asStateFlow()
 
     init {
         getLoginData()
-        mutableUsers.combine(mutablePosts) { mutableUsers, mutablePosts ->
+        combine(mutableUsers, mutablePosts) { mutableUsers, mutablePosts ->
             mutablePostItem.value = mutablePosts.mapToPostItemModel(mutableUsers).let {
-                if (it.isNotEmpty()) UiState.Success(it) else UiState.Loading
+                when {
+                    it.isNotEmpty() -> UiState.Success(it)
+                    else -> UiState.Loading(true)
+                }
             }
         }.launchIn(viewModelScope)
     }
@@ -48,13 +52,12 @@ class PostsViewModel @Inject constructor(
         repository.getLoginData()
             .collect { result ->
                 when (result) {
-                    is Resource.Loading -> {}
                     is Resource.Success ->
                         result.data?.api_key?.let {
                             getUsersData(it)
                             getPostsData(it)
                         }
-                    is Resource.Error -> Unit
+                    else -> {}
                 }
             }
     }
@@ -64,9 +67,8 @@ class PostsViewModel @Inject constructor(
             repository.getUsersData(apiKey)
                 .collect { result ->
                     when (result) {
-                        is Resource.Loading -> {}
                         is Resource.Success -> mutableUsers.value = result.data ?: emptyList()
-                        is Resource.Error -> Unit
+                        else -> {}
                     }
                 }
         }
@@ -77,9 +79,8 @@ class PostsViewModel @Inject constructor(
             repository.getPostsData(apiKey)
                 .collect { result ->
                     when (result) {
-                        is Resource.Loading -> {}
                         is Resource.Success -> mutablePosts.value = result.data ?: emptyList()
-                        is Resource.Error -> Unit
+                        else -> {}
                     }
                 }
         }

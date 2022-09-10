@@ -52,11 +52,13 @@ class PostsViewModel @Inject constructor(
         repository.getLoginData()
             .collect { result ->
                 when (result) {
-                    is Resource.Success ->
-                        result.data?.api_key?.let {
+                    is Resource.Success -> {
+                        mutableLogin.value.api_key = result.data?.api_key
+                        mutableLogin.value.api_key?.let {
                             getUsersData(it)
                             getPostsData(it)
                         }
+                    }
                     else -> {}
                 }
             }

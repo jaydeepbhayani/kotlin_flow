@@ -5,8 +5,8 @@ import com.jaydeepbhayani.league.data.model.PostsResponse
 import com.jaydeepbhayani.league.data.model.UsersResponse
 import com.jaydeepbhayani.league.data.remote.ApiService
 import com.jaydeepbhayani.league.domain.repository.RemoteRepository
+import com.jaydeepbhayani.league.util.DispatcherProvider
 import com.jaydeepbhayani.league.util.Resource
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
@@ -23,7 +23,7 @@ import javax.inject.Inject
 
 class RemoteRepositoryImpl @Inject constructor(
     private val apiService: ApiService,
-    /*private val dispatcher: DispatcherProvider*/
+    private val dispatcher: DispatcherProvider
 ) : RemoteRepository {
 
     override suspend fun getLoginData(): Flow<Resource<LoginResponse>> {
@@ -42,7 +42,7 @@ class RemoteRepositoryImpl @Inject constructor(
             } catch (e: Throwable) {
                 emit(Resource.Error("Couldn't load data"))
             }
-        }.flowOn(Dispatchers.IO)
+        }.flowOn(dispatcher.io)
     }
 
     override suspend fun getUsersData(apiKey: String): Flow<Resource<List<UsersResponse>>> {
@@ -61,7 +61,7 @@ class RemoteRepositoryImpl @Inject constructor(
             } catch (e: Throwable) {
                 emit(Resource.Error(e.message))
             }
-        }.flowOn(Dispatchers.IO)
+        }.flowOn(dispatcher.io)
     }
 
     override suspend fun getPostsData(apiKey: String): Flow<Resource<List<PostsResponse>>> {
@@ -80,7 +80,7 @@ class RemoteRepositoryImpl @Inject constructor(
             } catch (e: Throwable) {
                 emit(Resource.Error(e.message))
             }
-        }.flowOn(Dispatchers.IO)
+        }.flowOn(dispatcher.io)
     }
 
     companion object

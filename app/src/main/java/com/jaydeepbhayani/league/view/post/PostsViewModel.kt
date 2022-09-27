@@ -11,10 +11,7 @@ import com.jaydeepbhayani.league.util.Resource
 import com.jaydeepbhayani.league.util.UiState
 import com.jaydeepbhayani.league.util.mapToPostItemModel
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -34,7 +31,14 @@ class PostsViewModel @Inject constructor(
 
     private val mutablePostItem =
         MutableStateFlow<UiState<List<PostItemModel>>>(UiState.Loading(true))
-    val postItem get() = mutablePostItem.asStateFlow()
+    val postItem get() = combine(mutableUsers, mutablePosts) { mutableUsers, mutablePosts ->
+        mutablePosts.mapToPostItemModel(mutableUsers).let {
+            when {
+                it.isNotEmpty() -> UiState.Success(it)
+                else -> UiState.Loading(true)
+            }
+        }
+    }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(), UiState.Loading(true))
 
     init {
         getLoginData()

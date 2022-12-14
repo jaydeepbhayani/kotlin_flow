@@ -1,5 +1,6 @@
 package com.jaydeepbhayani.league.view.post
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.jaydeepbhayani.league.data.model.LoginResponse
@@ -37,6 +38,7 @@ class PostsViewModel @Inject constructor(
                 it.isNotEmpty() -> UiState.Success(it)
                 else -> UiState.Loading(true)
             }
+            Log.i("asd","asd")
         }
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(), UiState.Loading(true))
 

@@ -38,7 +38,6 @@ class PostsViewModel @Inject constructor(
                 it.isNotEmpty() -> UiState.Success(it)
                 else -> UiState.Loading(true)
             }
-            Log.i("asd","asd")
         }
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(), UiState.Loading(true))
 

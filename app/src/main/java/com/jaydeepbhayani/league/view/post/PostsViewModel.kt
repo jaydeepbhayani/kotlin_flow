@@ -50,7 +50,6 @@ class PostsViewModel @Inject constructor(
                     else -> UiState.Loading(true)
                 }
             }
-            //comment
         }.launchIn(viewModelScope)
     }
 
